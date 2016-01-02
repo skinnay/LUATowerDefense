@@ -1,4 +1,3 @@
-
 require "util"
 require "vector"
 require "number_format"
@@ -26,7 +25,7 @@ tower_types = {
 }
 
 
-function love.keypressed(key, unicode)
+function love.keypressed(key, scancode, isrepeat)
     if key == "escape" then
         tower_under_cursor = nil
         selected_tower = nil
@@ -42,8 +41,9 @@ function love.keypressed(key, unicode)
 end
 
 
-function love.mousepressed(x, y, button)
-    if button == "l" then
+function love.mousepressed(x, y, button, istouch)
+    print(x, y, button, istouch)
+    if button == 1 then
         check_button_actions()
         on_gui_click(x, y)
     end
