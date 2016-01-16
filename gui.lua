@@ -1,4 +1,3 @@
-
 gui_pos = Vector(1080, 100)
 
 anything_hovered = false
@@ -230,7 +229,7 @@ function draw_gui()
 
     love.graphics.setFont(big_font)
     love.graphics.setColor(52, 201, 36, 255)
-    love.graphics.print("Money: " .. format_num(player_money,0,"$ "), 600, 40)
+    love.graphics.print("Money: " .. format_num(player_money, 0, "$"), 600, 40)
     love.graphics.setColor(187, 36, 201, 255)
     love.graphics.print("Wave: " .. wave_id .. " / 50", 840, 40)
     love.graphics.setColor(0, 144, 255, 255)
@@ -296,7 +295,7 @@ function draw_gui()
         if tower_type.cost > player_money then
             love.graphics.setColor(255, 0, 0, 255)
         end
-        love.graphics.print("Price: " .. tower_type.cost .. "$", offs.x + field_size.x + 10, offs.y + 25)
+        love.graphics.print("Price: $" .. tower_type.cost, offs.x + field_size.x + 10, offs.y + 25)
     end
 
     if tower_under_cursor ~= nil then

@@ -1,4 +1,3 @@
-
 btn_cheat = {
     ["text"] = "Cheat", 
     ["pos"] = Vector(gui_pos.x, 830), 

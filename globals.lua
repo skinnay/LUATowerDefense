@@ -1,9 +1,4 @@
-
-
 game_field = {}
-
-
-
 towers = {}
 projectiles = {}
 field_width = 20

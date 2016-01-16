@@ -1,5 +1,3 @@
-
-
 FreezeProjectile = {}
 FreezeProjectile.__index = FreezeProjectile
 

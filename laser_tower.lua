@@ -1,4 +1,3 @@
-
 LaserTower = Tower.create()
 LaserTower.__index = LaserTower
 LaserTower.radius = 190

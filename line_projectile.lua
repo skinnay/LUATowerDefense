@@ -1,6 +1,3 @@
-
-
-
 LineProjectile = {}
 LineProjectile.__index = LineProjectile
 

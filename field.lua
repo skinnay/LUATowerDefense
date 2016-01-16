@@ -1,7 +1,3 @@
-
-
-
-
 function get_field_at(pos)
     if pos.x >= field_start.x and pos.y >= field_start.y then
         if pos.x < field_start.x + field_width * field_size.x then

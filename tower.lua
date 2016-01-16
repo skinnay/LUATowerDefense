@@ -1,5 +1,3 @@
-
-
 Tower = {}
 Tower.__index = Tower
 Tower.radius = 100

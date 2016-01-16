@@ -1,5 +1,3 @@
-
-
 SniperTower = Tower.create()
 SniperTower.__index = SniperTower
 SniperTower.radius = 320

@@ -1,4 +1,3 @@
-
 Entity = {}
 Entity.__index = Entity
 
