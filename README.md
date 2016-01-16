@@ -1,26 +1,8 @@
-<h1>LUATowerDefense</h1>
+<h1>Guardian of the Everpearl</h1>
 
-[![GitHub commits](https://img.shields.io/github/commits-since/tobspr/LUATowerDefense/1.0.0.svg)](https://github.com/tobspr/LUATowerDefense)
-[![GitHub stars](https://img.shields.io/github/stars/tobspr/LUATowerDefense.svg?style=social&label=Star)](https://github.com/tobspr/LUATowerDefense/)
-
-Some small fun project: Making a Tower Defense Game in LUA with __Löve2D__
-
-**WARNING:** This project is coded very badly, and was just created for fun purposes. Do *not* take this code seriously.
+Some small fun project: Making a Tower Defense Game in Lua with __Löve2D__
 
 <img src="http://i.imgur.com/XuwsSbA.png">
-
-## Getting Started
-Best way to clone the repository is to use:
-```
-git clone --depth=1
-```
-(much smaller download)
-
-## ToDo
-- [ ] Balance
-- [ ] Different Upgrading Paths
-- [ ] More towers
-- [ ] Better buttons
 
 ## Video
 Someone made a video about our game! :D (video by Open Source Games)
@@ -33,6 +15,3 @@ alt="No video herre ? oO" width="420" height="315" border="10" /></a>
  - https://love2d.org/
 
 Feel free to contact us, if you want to contribute
-
-
-<img src="./image1.png" height=1000 width=900>
