@@ -3,7 +3,6 @@ mute = false
 function playSound(name)
 	sound = love.audio.newSource("res/" .. name ..".wav", "static") -- the "static" tells LÖVE to load the file into memory, good for short sound effects
 	sound:play()
-
 end
 
 function playMusic(name)
