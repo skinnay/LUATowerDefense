@@ -3,7 +3,7 @@
 SniperTower = Tower.create()
 SniperTower.__index = SniperTower
 SniperTower.radius = 320
-SniperTower.cost = 850
+SniperTower.cost = 590
 SniperTower.name = "Sniper Tower"
 SniperTower.shoot_speed = 6.0
 SniperTower.shoot_frequency = 1.3

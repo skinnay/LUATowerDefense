@@ -33,6 +33,3 @@ alt="No video herre ? oO" width="420" height="315" border="10" /></a>
  - https://love2d.org/
 
 Feel free to contact us, if you want to contribute
-
-
-<img src="./image1.png" height=1000 width=900>
