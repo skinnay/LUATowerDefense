@@ -2,7 +2,7 @@
 LaserTower = Tower.create()
 LaserTower.__index = LaserTower
 LaserTower.radius = 190
-LaserTower.cost = 540
+LaserTower.cost = 900
 LaserTower.name = "Laser Tower"
 LaserTower.shoot_speed = 3.0
 
