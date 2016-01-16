@@ -1,4 +1,3 @@
-
 function rounded_rect(x, y, w, h, r)
   local right = 0
   local left = math.pi

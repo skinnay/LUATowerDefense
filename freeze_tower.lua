@@ -1,5 +1,3 @@
-
-
 FreezeTower = Tower.create()
 FreezeTower.__index = FreezeTower
 FreezeTower.radius = 100

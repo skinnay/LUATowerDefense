@@ -1,6 +1,3 @@
-
-
-
 DirectedProjectile = {}
 DirectedProjectile.__index = DirectedProjectile
 

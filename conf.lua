@@ -1,5 +1,3 @@
-
-
 function love.conf(t)
     t.title = "LUA Tower Defense"
     t.version = "0.10.0"

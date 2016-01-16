@@ -1,8 +1,5 @@
-
 entities = {}
 entity_queue = {}
-
-
 
 function criteria_closest(pos, entity)
     return -Vector.distance(pos, entity:get_pos())
@@ -19,8 +16,6 @@ end
 function criteria_strongest(pos, entity)
     return entity.hp
 end
-
-
 
 -- Modes:
 -- Furthest -> get the entity in range which has progressed most
