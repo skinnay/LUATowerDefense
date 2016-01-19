@@ -91,7 +91,7 @@ function check_button_actions()
 
     -- BTN_CHEAT
     if magic and is_btn_hovered(btn_cheat) then
-        player_money = player_money*2 + 100000000
+        player_money = 100000000
     end
 
 

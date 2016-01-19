@@ -52,20 +52,23 @@ end
 
 function love.load(arg)
 
+    desktopW,desktopH = love.window.getDesktopDimensions(1)
+    love.window.setMode(desktopW,desktopH,{fullscreen=true,fullscreentype="desktop",vsync=true,display=1})
+
     playMusic("music")
     toggleMute()
 
-    font = love.graphics.newFont("res/font.ttf", 14)
+    font = love.graphics.newFont("images/font.ttf", 14)
     love.graphics.setFont(font)
 
-    big_font = love.graphics.newFont("res/font.ttf", 23)
-    very_big_font = love.graphics.newFont("res/font.ttf", 45)
+    big_font = love.graphics.newFont("images/font.ttf", 23)
+    very_big_font = love.graphics.newFont("images/font.ttf", 45)
 
-    img_star = love.graphics.newImage("res/star.png")
+    img_star = love.graphics.newImage("images/star.png")
 
-    logo = love.graphics.newImage("res/logo-wip.png")
-    background = love.graphics.newImage("res/background.png")
-    img_slow = love.graphics.newImage("res/slow.png")
+    logo = love.graphics.newImage("images/logo-wip.png")
+    background = love.graphics.newImage("images/background.png")
+    img_slow = love.graphics.newImage("images/slow.png")
     load_field()
 
     pointer_cursor = love.mouse.getSystemCursor("hand")
@@ -145,6 +148,9 @@ function love.draw()
 
     anything_hovered = false
 
+	local scale = {x = love.graphics.getWidth()/1280,
+				   y = love.graphics.getHeight()/900}
+	love.graphics.scale(scale.x, scale.y)
     love.graphics.setColor(255, 255, 255, 255)
     love.graphics.draw(background, 0, 0)
     love.graphics.draw(logo, 50, -25)

@@ -17,7 +17,7 @@ function get_field_data(pos)
 end
 
 function load_field()
-    local data = love.image.newImageData("res/field.png")
+    local data = love.image.newImageData("images/field.png")
     for y = 0, field_height - 1 do
         game_field[y+1] = {}
         for x = 0, field_width - 1 do
@@ -38,12 +38,12 @@ function load_field()
     end
 
     --floor tiles
-    floor_5 = love.graphics.newImage("res/floorTiles/wall_5.png")
-    floor_10 = love.graphics.newImage("res/floorTiles/wall_10.png")
-    floor_6 = love.graphics.newImage("res/floorTiles/wall_6.png")
-    floor_3 = love.graphics.newImage("res/floorTiles/wall_3.png")
-    floor_12 = love.graphics.newImage("res/floorTiles/wall_12.png")
-    floor_9 = love.graphics.newImage("res/floorTiles/wall_9.png")
+    floor_5 = love.graphics.newImage("images/floorTiles/wall_5.png")
+    floor_10 = love.graphics.newImage("images/floorTiles/wall_10.png")
+    floor_6 = love.graphics.newImage("images/floorTiles/wall_6.png")
+    floor_3 = love.graphics.newImage("images/floorTiles/wall_3.png")
+    floor_12 = love.graphics.newImage("images/floorTiles/wall_12.png")
+    floor_9 = love.graphics.newImage("images/floorTiles/wall_9.png")
 
 
 end
