@@ -53,7 +53,8 @@ end
 function love.load(arg)
 
     desktopW,desktopH = love.window.getDesktopDimensions(1)
-    love.window.setMode(desktopW,desktopH,{fullscreen=true,fullscreentype="desktop",vsync=true,display=1})
+    love.window.setMode(desktopW, desktopH, 
+                       {fullscreen=true, fullscreentype="desktop", vsync=true})
 
     playMusic("music")
     toggleMute()
@@ -147,9 +148,8 @@ end
 function love.draw()
 
     anything_hovered = false
-
-	local scale = {x = love.graphics.getWidth()/1280,
-				   y = love.graphics.getHeight()/900}
+	scale = {x = love.graphics.getWidth()/1280,
+             y = love.graphics.getHeight()/900}
 	love.graphics.scale(scale.x, scale.y)
     love.graphics.setColor(255, 255, 255, 255)
     love.graphics.draw(background, 0, 0)
@@ -160,7 +160,10 @@ function love.draw()
     if true then
 
         -- Feld zeichnen
-        love.graphics.setScissor(field_start.x, field_start.y, field_width * field_size.x, field_height * field_size.y)
+        love.graphics.setScissor(field_start.x * scale.x, 
+                                 field_start.y * scale.y, 
+                                 field_size.x * scale.x * field_width,
+                                 field_size.y * scale.y * field_height)
         draw_field()
 
         -- Draw projectiles
@@ -178,14 +181,16 @@ function love.draw()
         -- Draw Towers
         for i = 1, #towers do
             local tower = towers[i]
-            tower:draw()
+            towers[i]:draw()
         end
 
         love.graphics.setScissor()
 
         -- Draw Field borders
         love.graphics.setColor(100, 100, 100, 255)
-        love.graphics.rectangle("line", field_start.x, field_start.y, field_width * field_size.x, field_height * field_size.y)
+        love.graphics.rectangle("line", field_start.x, field_start.y, 
+                                field_width * field_size.x,
+                                field_height * field_size.y)
 
         draw_gui()
 
@@ -196,7 +201,8 @@ function love.draw()
         love.graphics.rectangle("fill", 0, 0, 10000, 10000)
         love.graphics.setColor(255, 255, 255, 255)
         love.graphics.setFont(very_big_font)
-        love.graphics.print("GAME OVER!", love.graphics.getWidth() / 2 - 120, love.graphics.getHeight() / 2 - 30)
+        love.graphics.print("GAME OVER!", love.graphics.getWidth() / 2 - 120,
+                            love.graphics.getHeight() / 2 - 30)
         love.graphics.setFont(font)
     end
 

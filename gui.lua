@@ -6,8 +6,8 @@ ctrl_towers = Vector(gui_pos.x, gui_pos.y)
 
 
 function is_hovered(pos, size)
-    if mouse.x >= pos.x and mouse.y >= pos.y then
-        if mouse.x < pos.x + size.x and mouse.y < pos.y + size.y then
+    if mouse.x >= pos.x * scale.x and mouse.y >= pos.y * scale.y then
+        if mouse.x < pos.x * scale.x + size.x and mouse.y < pos.y * scale.y * scale.y + size.y then
             return true
         end
     end
@@ -171,7 +171,8 @@ end
 
 
 function on_gui_click(x, y)
-
+    x = x / scale.x
+    y = y / scale.y
     local tile = get_field_at(Vector(x, y))
 
 
@@ -299,12 +300,12 @@ function draw_gui()
     end
 
     if tower_under_cursor ~= nil then
-        local could_place = can_place_tower_at(mouse.x, mouse.y) and tower_under_cursor.cost <= player_money
-        tower_under_cursor.draw_shape(tower_under_cursor, mouse.x, mouse.y, tower_under_cursor.radius, 0, could_place, true)
+        local could_place = can_place_tower_at(mouse.x / scale.x, mouse.y / scale.y) and tower_under_cursor.cost <= player_money
+        tower_under_cursor.draw_shape(tower_under_cursor, mouse.x / scale.x, mouse.y / scale.y, tower_under_cursor.radius, 0, could_place, true)
 
         if tower_under_cursor.cost > player_money then
             love.graphics.setColor(255, 0, 0, 255)
-            love.graphics.print("You don't have enough money!", mouse.x - 10, mouse.y + 40)
+            love.graphics.print("You don't have enough money!", mouse.x / scale.x - 30, mouse.y / scale.y + 40)
         end
 
     end

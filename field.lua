@@ -1,12 +1,10 @@
 function get_field_at(pos)
-    if pos.x >= field_start.x and pos.y >= field_start.y then
-        if pos.x < field_start.x + field_width * field_size.x then
-            if pos.y < field_start.y + field_height * field_size.y then
-                local tile_x = math.floor( (pos.x - field_start.x) / field_size.x ) + 1
-                local tile_y = math.floor( (pos.y - field_start.y) / field_size.y ) + 1
-                return Vector(tile_x, tile_y)
-            end
-        end
+    if pos.x >= field_start.x and pos.y >= field_start.y and
+      pos.x < field_start.x + field_width * field_size.x and
+      pos.y < field_start.y + field_height * field_size.y then
+        local tile_x = math.floor( (pos.x - field_start.x) / field_size.x ) + 1
+        local tile_y = math.floor( (pos.y - field_start.y) / field_size.y ) + 1
+        return Vector(tile_x, tile_y)
     end
 
     return nil
@@ -88,52 +86,50 @@ function draw_field()
                     if(x>1 and game_field[y][x-1] == 1) then bitmask = bitmask + 4 end
                     if(y>1 and game_field[y-1][x] == 1) then bitmask = bitmask + 8 end
 
-                    love.graphics.setColor(0,0,0)                    
+                    love.graphics.setColor(255, 255, 255, 255)
                     if(bitmask == 5) then -- ==
                         love.graphics.line(offs.x, offs.y, offs.x+field_size.x, offs.y)
                         love.graphics.line(offs.x, offs.y+field_size.y, offs.x+field_size.x, offs.y+field_size.y)
 
-                        love.graphics.setColor(255, 255, 255, 255)
+                        --love.graphics.setColor(255, 255, 255, 255)
                         love.graphics.draw(floor_5, offs.x, offs.y, 0, 50/64, 50/64)
                     end
                     if(bitmask == 10 or bitmask == 2 or bitmask == 8) then -- ||    --hack for first and last tile
                         love.graphics.line(offs.x, offs.y, offs.x, offs.y+field_size.y)
                         love.graphics.line(offs.x+field_size.x, offs.y, offs.x+field_size.x, offs.y+field_size.y)
 
-                        love.graphics.setColor(255, 255, 255, 255)
+                        --love.graphics.setColor(255, 255, 255, 255)
                         love.graphics.draw(floor_10, offs.x, offs.y, 0, 50/64, 50/64)
                     end
                     if(bitmask == 6) then
                         love.graphics.line(offs.x, offs.y, offs.x+field_size.x, offs.y)
                         love.graphics.line(offs.x+field_size.x, offs.y, offs.x+field_size.x, offs.y+field_size.y)
 
-                        love.graphics.setColor(255, 255, 255, 255)
+                        --love.graphics.setColor(255, 255, 255, 255)
                         love.graphics.draw(floor_6, offs.x, offs.y, 0, 50/64, 50/64)
                     end
                     if(bitmask == 12) then
                         love.graphics.line(offs.x, offs.y+field_size.y, offs.x+field_size.x, offs.y+field_size.y)
                         love.graphics.line(offs.x+field_size.x, offs.y, offs.x+field_size.x, offs.y+field_size.y)
 
-                        love.graphics.setColor(255, 255, 255, 255)
+                        --love.graphics.setColor(255, 255, 255, 255)
                         love.graphics.draw(floor_12, offs.x, offs.y, 0, 50/64, 50/64)
                     end
                     if(bitmask == 3 or bitmask == 1) then --hack for second last tile !
                         love.graphics.line(offs.x, offs.y, offs.x+field_size.x, offs.y)
                         love.graphics.line(offs.x, offs.y, offs.x, offs.y+field_size.y)
 
-                        love.graphics.setColor(255, 255, 255, 255)
+                        --love.graphics.setColor(255, 255, 255, 255)
                         love.graphics.draw(floor_3, offs.x, offs.y, 0, 50/64, 50/64)
                     end
                     if(bitmask == 9) then
                         love.graphics.line(offs.x, offs.y+field_size.y, offs.x+field_size.x, offs.y+field_size.y)
                         love.graphics.line(offs.x, offs.y, offs.x, offs.y+field_size.y)
                         
-                        love.graphics.setColor(255, 255, 255, 255)
+                        --love.graphics.setColor(255, 255, 255, 255)
                         love.graphics.draw(floor_9, offs.x, offs.y, 0, 50/64, 50/64)
                     end
-
                 end
-
             end
         end
     end 
