@@ -7,7 +7,7 @@ ctrl_towers = Vector(gui_pos.x, gui_pos.y)
 
 function is_hovered(pos, size)
     if mouse.x >= pos.x * scale.x and mouse.y >= pos.y * scale.y then
-        if mouse.x < pos.x * scale.x + size.x and mouse.y < pos.y * scale.y * scale.y + size.y then
+        if mouse.x < (pos.x + size.x) * scale.x and mouse.y < (pos.y + size.y) * scale.y then
             return true
         end
     end
