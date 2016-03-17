@@ -1,5 +1,5 @@
-entities = {}
-entity_queue = {}
+entities = {} 
+entity_queue = {} 
 
 function criteria_closest(pos, entity)
     return -Vector.distance(pos, entity:get_pos())

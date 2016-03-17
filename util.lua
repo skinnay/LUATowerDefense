@@ -13,3 +13,12 @@ function rounded_rect(x, y, w, h, r)
    love.graphics.arc("fill", x + w-r, y + h-r, r, right, bottom)
    love.graphics.arc("fill", x+r, y + h-r, r, bottom, left)
 end
+
+function table.contains(table, element)
+  for _, value in pairs(table) do
+    if value == element then
+      return true
+    end
+  end
+  return false
+end

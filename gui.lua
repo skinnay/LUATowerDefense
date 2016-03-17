@@ -158,7 +158,7 @@ function can_place_tower_at(x, y)
 
     local tile = get_field_at(Vector(x, y))
 
-    if tile ~= nil and get_field_data(tile) == 0 then
+    if tile ~= nil and not field_grid[tile.y][tile.x].walkable_path then
         local tower = closest_tower(Vector(x, y))
         if tower == nil or Vector.distance(tower:get_pos(), Vector(x, y)) > 25 then
             return true

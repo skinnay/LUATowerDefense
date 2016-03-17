@@ -1,3 +1,4 @@
 *.sw?
 *.love
 droid-build.sh
+tags

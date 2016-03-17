@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="50" tileheight="50" nextobjectid="1">
+ <tileset firstgid="1" name="cwpVW12" tilewidth="50" tileheight="50" tilecount="70" columns="10">
+  <image source="../../images/tilesets/cwpVW12.png" width="512" height="384"/>
+  <tile id="1">
+   <properties>
+    <property name="walkable_path" value="true"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="walkable_path" value="true"/>
+   </properties>
+  </tile>
+  <tile id="44">
+   <properties>
+    <property name="start" value="true"/>
+    <property name="walkable_path" value="true"/>
+   </properties>
+  </tile>
+  <tile id="64">
+   <properties>
+    <property name="finish" value="true"/>
+    <property name="walkable_path" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="11">
+  <data encoding="csv">
+45,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+30,2,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+30,30,2,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+30,30,30,2,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+30,30,30,30,2,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+30,30,30,30,30,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+30,30,30,30,30,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+30,30,30,30,2,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+30,30,2,2,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+30,30,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,
+65,2,2,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30
+</data>
+ </layer>
+</map>

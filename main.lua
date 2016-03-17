@@ -15,9 +15,9 @@ require "sound"
 require "laser_tower"
 require "freeze_tower"
 require "sniper_tower"
+sti = require "sti"
 
-
-tower_types = {
+tower_types = { 
     Tower,
     FreezeTower,
     SniperTower,
@@ -70,7 +70,7 @@ function love.load(arg)
     logo = love.graphics.newImage("images/logo-wip.png")
     background = love.graphics.newImage("images/background.png")
     img_slow = love.graphics.newImage("images/slow.png")
-    load_field()
+    load_field(maps[current_map])
 
     pointer_cursor = love.mouse.getSystemCursor("hand")
 
@@ -78,7 +78,7 @@ end
 
 
 function love.update(dt)
-
+    map:update(dt)
     if player_lifes < 1 then
         return
     end
@@ -157,44 +157,40 @@ function love.draw()
     love.graphics.setColor(100, 100, 100, 255)
     -- love.graphics.rectangle("fill", 0, 0, 10000, 10000)
 
-    if true then
+    -- Field area
+    love.graphics.setScissor(field_start.x * scale.x, 
+                             field_start.y * scale.y, 
+                             field_size.x * scale.x * field_width,
+                             field_size.y * scale.y * field_height)
+    map:draw()
 
-        -- Feld zeichnen
-        love.graphics.setScissor(field_start.x * scale.x, 
-                                 field_start.y * scale.y, 
-                                 field_size.x * scale.x * field_width,
-                                 field_size.y * scale.y * field_height)
-        draw_field()
-
-        -- Draw projectiles
-        for i = 1, #projectiles do
-            local projectile = projectiles[i]
-            projectile:draw()
-        end
-
-        -- Draw entities
-        for i = 1, #entities do
-            local entity = entities[i]
-            entity:draw()
-        end
-
-        -- Draw Towers
-        for i = 1, #towers do
-            local tower = towers[i]
-            towers[i]:draw()
-        end
-
-        love.graphics.setScissor()
-
-        -- Draw Field borders
-        love.graphics.setColor(100, 100, 100, 255)
-        love.graphics.rectangle("line", field_start.x, field_start.y, 
-                                field_width * field_size.x,
-                                field_height * field_size.y)
-
-        draw_gui()
-
+    -- Draw projectiles
+    for i = 1, #projectiles do
+        local projectile = projectiles[i]
+        projectile:draw()
     end
+
+    -- Draw entities
+    for i = 1, #entities do
+        local entity = entities[i]
+        entity:draw()
+    end
+
+    -- Draw Towers
+    for i = 1, #towers do
+        local tower = towers[i]
+        towers[i]:draw()
+    end
+
+    love.graphics.setScissor()
+
+    -- Draw Field borders
+    love.graphics.setColor(100, 100, 100, 255)
+    love.graphics.rectangle("line", field_start.x, field_start.y, 
+                            field_width * field_size.x,
+                            field_height * field_size.y)
+    draw_gui()
+
 
     if player_lifes < 1 then
         love.graphics.setColor(128, 10, 10, 200)

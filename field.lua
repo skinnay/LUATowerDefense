@@ -10,132 +10,40 @@ function get_field_at(pos)
     return nil
 end
 
-function get_field_data(pos)
-    return game_field[pos.y][pos.x]
-end
+function load_field(map_table)
+    assert(map_table.width == 20 and map_table.height == 11 and
+            map_table.tilewidth == 50 and map_table.tileheight == 50,
+            "Map must be a 20x11 grid of 50x50 pixel tiles")
 
-function load_field()
-    local data = love.image.newImageData("images/field.png")
-    for y = 0, field_height - 1 do
-        game_field[y+1] = {}
-        for x = 0, field_width - 1 do
-            r, g, b, a = data:getPixel(x, y)
-            local field = 0
-
-            if r > 127 then
-                field = 1
-                start_pos = Vector(x+1, y+1)
-            elseif g > 127 then
-                field = 1
-            elseif b > 127 then
-                field = 2
-            end
-
-            game_field[y+1][x+1] = field
+    -- Constructs an associative table mapping tile ids to their table of 
+    -- properties by looping through all tiles in all tilesets.
+    local tile_properties = {}
+    for i, tileset in ipairs(map_table.tilesets) do
+        for i, tile in ipairs(tileset.tiles) do
+            tile_properties[tile.id + tileset.firstgid] = tile.properties
         end
     end
 
-    --floor tiles
-    floor_5 = love.graphics.newImage("images/floorTiles/wall_5.png")
-    floor_10 = love.graphics.newImage("images/floorTiles/wall_10.png")
-    floor_6 = love.graphics.newImage("images/floorTiles/wall_6.png")
-    floor_3 = love.graphics.newImage("images/floorTiles/wall_3.png")
-    floor_12 = love.graphics.newImage("images/floorTiles/wall_12.png")
-    floor_9 = love.graphics.newImage("images/floorTiles/wall_9.png")
-
-
-end
-
-function draw_field()
-
-    for x = 1, field_width do
-        for y = 1, field_height do
-            local obj = game_field[y][x]
-            local offs = Vector(x - 1, y - 1) * field_size + field_start
-            local draw_rect = true
-
-            if obj == 1 or obj == 2 then
-                
-                -- Start
-                love.graphics.setColor(20, 20, 20, 255)
-                if x == start_pos.x and y == start_pos.y then
-                    love.graphics.print("START", offs.x + 4, offs.y + 20)
-                
-                -- Ziel
-                elseif obj == 2 then
-                    love.graphics.print("END", offs.x + 10, offs.y + 20)
-                end
-            
-                -- Strecke
-                love.graphics.setColor(0, 0, 0, 100)
-
-            
-            elseif obj == 0 then
-                -- Leer
-                love.graphics.setColor(0, 0, 0, 20)
-
-            end
-
-            if draw_rect then
-                love.graphics.rectangle("fill", offs.x, offs.y, field_size.x, field_size.y)
-                
-                if((game_field[y][x]==1 or game_field[y][x]==2) and x>0 and y>0 and x<=field_width and y<=field_height) then
-                    local bitmask = 0
-                    if(x<field_width and game_field[y][x+1] == 1) then bitmask = bitmask + 1 end
-                    if(y<field_height and game_field[y+1][x] == 1) then bitmask = bitmask + 2 end
-                    if(x>1 and game_field[y][x-1] == 1) then bitmask = bitmask + 4 end
-                    if(y>1 and game_field[y-1][x] == 1) then bitmask = bitmask + 8 end
-
-                    love.graphics.setColor(255, 255, 255, 255)
-                    if(bitmask == 5) then -- ==
-                        love.graphics.line(offs.x, offs.y, offs.x+field_size.x, offs.y)
-                        love.graphics.line(offs.x, offs.y+field_size.y, offs.x+field_size.x, offs.y+field_size.y)
-
-                        --love.graphics.setColor(255, 255, 255, 255)
-                        love.graphics.draw(floor_5, offs.x, offs.y, 0, 50/64, 50/64)
-                    end
-                    if(bitmask == 10 or bitmask == 2 or bitmask == 8) then -- ||    --hack for first and last tile
-                        love.graphics.line(offs.x, offs.y, offs.x, offs.y+field_size.y)
-                        love.graphics.line(offs.x+field_size.x, offs.y, offs.x+field_size.x, offs.y+field_size.y)
-
-                        --love.graphics.setColor(255, 255, 255, 255)
-                        love.graphics.draw(floor_10, offs.x, offs.y, 0, 50/64, 50/64)
-                    end
-                    if(bitmask == 6) then
-                        love.graphics.line(offs.x, offs.y, offs.x+field_size.x, offs.y)
-                        love.graphics.line(offs.x+field_size.x, offs.y, offs.x+field_size.x, offs.y+field_size.y)
-
-                        --love.graphics.setColor(255, 255, 255, 255)
-                        love.graphics.draw(floor_6, offs.x, offs.y, 0, 50/64, 50/64)
-                    end
-                    if(bitmask == 12) then
-                        love.graphics.line(offs.x, offs.y+field_size.y, offs.x+field_size.x, offs.y+field_size.y)
-                        love.graphics.line(offs.x+field_size.x, offs.y, offs.x+field_size.x, offs.y+field_size.y)
-
-                        --love.graphics.setColor(255, 255, 255, 255)
-                        love.graphics.draw(floor_12, offs.x, offs.y, 0, 50/64, 50/64)
-                    end
-                    if(bitmask == 3 or bitmask == 1) then --hack for second last tile !
-                        love.graphics.line(offs.x, offs.y, offs.x+field_size.x, offs.y)
-                        love.graphics.line(offs.x, offs.y, offs.x, offs.y+field_size.y)
-
-                        --love.graphics.setColor(255, 255, 255, 255)
-                        love.graphics.draw(floor_3, offs.x, offs.y, 0, 50/64, 50/64)
-                    end
-                    if(bitmask == 9) then
-                        love.graphics.line(offs.x, offs.y+field_size.y, offs.x+field_size.x, offs.y+field_size.y)
-                        love.graphics.line(offs.x, offs.y, offs.x, offs.y+field_size.y)
-                        
-                        --love.graphics.setColor(255, 255, 255, 255)
-                        love.graphics.draw(floor_9, offs.x, offs.y, 0, 50/64, 50/64)
-                    end
-                end
+    -- Constructs field_grid so each position on the field is associated with
+    -- the properties of the tile at that position like so:
+    -- field_grid[1][1] = {"walkable_path" = "true", "start" = "true"}
+    for y = 1, field_height do
+        field_grid[y] = {}
+        for x = 1, field_width do
+            tile_id = map_table.layers[1].data[(y-1) * field_width + x]
+            field_grid[y][x] = tile_properties[tile_id] or {}
+            is_start_tile = tile_properties[tile_id] and 
+                            tile_properties[tile_id].start
+            if is_start_tile then
+                start_pos = Vector(x, y)
             end
         end
-    end 
+    end
+
+    start_pos = start_pos or Vector(1, 1) 
+    map = sti.new("maps/lua/" .. current_map .. ".lua", nil,
+                   field_start.x, field_start.y)
 end
-
-
 
 function closest_tower(pos)
 

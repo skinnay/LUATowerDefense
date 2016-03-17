@@ -1,8 +1,7 @@
-game_field = {}
+field_grid = {}
 towers = {}
 projectiles = {}
 field_width = 20
-start_pos = Vector(1, 1)
 field_height = 11
 field_start = Vector(50, 100)
 field_size = Vector(50, 50) --(50, 50)
@@ -18,3 +17,15 @@ time_factor = 1.0
 fast_forward = false
 mouse = Vector(0, 0)
 magic = false
+
+current_map = "map3"
+
+-- Constructs table of maps by looping through the specified directory
+-- mapdir must have trailing forward slash
+local mapdir = "maps/lua/"
+maps = {}
+-- TODO: check if this works on windows (because of ls command)
+for file in io.popen('ls ' .. mapdir):lines() do
+    local filename = file:sub(1, #file - 4)
+    maps[filename] = require(mapdir .. filename)
+end
